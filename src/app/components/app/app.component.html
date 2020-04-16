@@ -1,0 +1,6 @@
+<h1> Hello {{msg}} </h1>
+<app-user *ngFor="let user of users" [user]="user"></app-user>
+<hr>
+<app-post *ngFor="let post of posts" [post]="post"></app-post>
+<hr>
+<app-comment *ngFor="let singleComment of comments" [comment]="singleComment"></app-comment>
