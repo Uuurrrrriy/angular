@@ -1,16 +1,60 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import { AppComponent } from './app.component';
+import { AppComponent } from './components/app/app.component';
+import {RouterModule} from '@angular/router';
+import { AllUsersComponent } from './components/all-users/all-users.component';
+import { AllPostsComponent } from './components/all-posts/all-posts.component';
+import { AllCommentsComponent } from './components/all-comments/all-comments.component';
+import { HelloComponent } from './components/hello/hello.component';
+import {HttpClientModule} from '@angular/common/http';
+import {UserResolverService} from './models/resolvers/user-resolver.service';
+import {PostResolverService} from './models/resolvers/post-resolver.service';
+import {CommentResolverService} from './models/resolvers/comment-resolver.service';
+import { UserComponent } from './components/single-components/user/user.component';
+import { PostComponent } from './components/single-components/post/post.component';
+import { CommentComponent } from './components/single-components/comment/comment.component';
+
+const routes = [
+  {
+    path: '',
+    component: HelloComponent
+  },
+  {
+    path: 'users',
+    component: AllUsersComponent ,
+    resolve: { list: UserResolverService }
+  },
+  {
+    path: 'posts',
+    component: AllPostsComponent ,
+    resolve: { list: PostResolverService }
+  },
+  {
+    path: 'comments',
+    component: AllCommentsComponent ,
+    resolve: { list: CommentResolverService }
+  }
+];
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    AllUsersComponent,
+    AllPostsComponent,
+    AllCommentsComponent,
+    HelloComponent,
+    UserComponent,
+    PostComponent,
+    CommentComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    RouterModule.forRoot(routes),
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
