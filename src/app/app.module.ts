@@ -8,6 +8,8 @@ import { RouterModule, Routes} from '@angular/router';
 import { HelloComponent } from './hello/hello.component';
 import { AllUsersComponent } from './all-users/all-users.component';
 import {UserResolverService} from './services/user-resolver.service';
+import { AllPostsComponent } from './all-posts/all-posts.component';
+import {PostResolveService} from './services/post-resolve.service';
 
 const  routes: Routes = [
   // localhost: 4200 -> HelloComponent
@@ -19,7 +21,14 @@ const  routes: Routes = [
   {
     path: 'users',
     component: AllUsersComponent,
-    resolve: {allUsers: UserResolverService}
+    resolve: {allUsers: UserResolverService},
+    children: [
+      {
+        path: ':id/posts',
+        component: AllPostsComponent,
+        resolve: {xxx: PostResolveService}
+      }
+    ]
   }
 ];
 
@@ -28,7 +37,8 @@ const  routes: Routes = [
     AppComponent,
     UserComponent,
     HelloComponent,
-    AllUsersComponent
+    AllUsersComponent,
+    AllPostsComponent
   ],
   imports: [
     BrowserModule,
