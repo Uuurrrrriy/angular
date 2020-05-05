@@ -1,7 +1,8 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {UserModel} from '../../models/UserModel';
+
 import {ActivatedRoute, Router} from '@angular/router';
 import {state} from '@angular/animations';
+import {UserModel} from '../../../../../models/UserModel';
 
 @Component({
   selector: 'app-user',

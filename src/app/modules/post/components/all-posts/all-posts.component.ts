@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {PostService} from '../services/post.service';
+import {PostService} from '../../services/post.service';
 import {ActivatedRoute, Router} from '@angular/router';
-import {PostModel} from '../../models/PostModel';
+import {PostModel} from '../../../../../models/PostModel';
+
 
 @Component({
   selector: 'app-all-posts',

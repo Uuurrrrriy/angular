@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {UserService} from '../services/user.service';
+import {UserService} from '../../services/user.service';
 import {ActivatedRoute, ActivatedRouteSnapshot, Resolve, RouterStateSnapshot} from '@angular/router';
-import {UserModel} from '../../models/UserModel';
+
 import {Observable} from 'rxjs';
+import {UserModel} from '../../../../../models/UserModel';
 
 @Component({
   selector: 'app-all-users',
