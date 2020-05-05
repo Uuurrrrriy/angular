@@ -10,11 +10,11 @@ import { HelloComponent } from './components/hello/hello.component';
 import {HttpClientModule} from '@angular/common/http';
 import {UserResolverService} from './models/resolvers/user-resolver.service';
 import {PostResolverService} from './models/resolvers/post-resolver.service';
-import {CommentResolverService} from './models/resolvers/comment-resolver.service';
 import { UserComponent } from './components/single-components/user/user.component';
 import { PostComponent } from './components/single-components/post/post.component';
 import { CommentComponent } from './components/single-components/comment/comment.component';
-
+import {CommentResolverService} from './models/resolvers/comment-resolver.service';
+import {CommentsResolverService} from './models/resolvers/comments-resolver.service';
 const routes = [
   {
     path: '',
@@ -23,12 +23,25 @@ const routes = [
   {
     path: 'users',
     component: AllUsersComponent ,
-    resolve: { list: UserResolverService }
+    resolve: { list: UserResolverService } ,
+    children: [
+      {
+        path: ':id/posts',
+        component: AllPostsComponent
+      }
+    ]
   },
   {
     path: 'posts',
     component: AllPostsComponent ,
-    resolve: { list: PostResolverService }
+    resolve: { list: PostResolverService },
+    children: [
+      {
+        path: ':id/comments',
+        component: AllCommentsComponent,
+        resolve: { comments: CommentsResolverService }
+      }
+    ]
   },
   {
     path: 'comments',

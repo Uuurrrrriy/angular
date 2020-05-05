@@ -14,4 +14,9 @@ export class PostService {
   getAllData(): Observable<Post[]> {
     return this.httpClient.get<Post[]>(API + 'posts');
   }
+
+  getUsersPost(id): Observable<Post[]> {
+    return this.httpClient.get<Post[]>(API + `posts?userId=${id}`);
+  }
+
 }

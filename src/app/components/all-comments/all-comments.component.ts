@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {CommentModel} from '../../models/CommentModel';
+import {tryCatch} from 'rxjs/internal-compatibility';
 
 @Component({
   selector: 'app-all-comments',
@@ -11,8 +12,17 @@ export class AllCommentsComponent implements OnInit {
   comments: CommentModel[];
 
   constructor(private activatedRoute: ActivatedRoute) {
-    console.log(this.activatedRoute.snapshot.data.list);
-    this.comments = this.activatedRoute.snapshot.data.list;
+    // console.log(this.activatedRoute.snapshot.data.list);
+    // try {
+    //   this.comments = this.activatedRoute.snapshot.data.list;
+    // } catch (e) {
+    //   console.log(e);
+    // }
+
+    this.activatedRoute.data.subscribe(value => {
+      this.comments = value.comments;
+    });
+
   }
 
   ngOnInit(): void {
