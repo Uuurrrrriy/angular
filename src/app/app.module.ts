@@ -3,47 +3,29 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import {HttpClientModule} from '@angular/common/http';
-import { UserComponent } from './user/user.component';
+import { UserComponent } from './user-module/components/user/user.component';
 import { RouterModule, Routes} from '@angular/router';
 import { HelloComponent } from './hello/hello.component';
-import { AllUsersComponent } from './all-users/all-users.component';
-import {UserResolverService} from './services/user-resolver.service';
-import { AllPostsComponent } from './all-posts/all-posts.component';
-import {PostResolveService} from './services/post-resolve.service';
+import { AllUsersComponent } from './user-module/components/all-users/all-users.component';
+import {UserResolverService} from './user-module/services/user-resolver.service';
+import { AllPostsComponent } from './post-module/components/all-posts/all-posts.component';
+import {PostResolveService} from './post-module/services/post-resolve.service';
+import {AppRoutingModule} from './app-routing.module';
+import { PostComponent } from './post-module/components/post/post.component';
+import {UserModuleModule} from './user-module/user-module.module';
+import {PostModuleModule} from './post-module/post-module.module';
 
-const  routes: Routes = [
-  // localhost: 4200 -> HelloComponent
-  {
-    path: '',
-    component: HelloComponent
-  },
-  // localhost: 4200/users -> AllUsersComponent
-  {
-    path: 'users',
-    component: AllUsersComponent,
-    resolve: {allUsers: UserResolverService},
-    children: [
-      {
-        path: ':id/posts',
-        component: AllPostsComponent,
-        resolve: {xxx: PostResolveService}
-      }
-    ]
-  }
-];
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    UserComponent,
-    HelloComponent,
-    AllUsersComponent,
-    AllPostsComponent
+    HelloComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    RouterModule.forRoot(routes)
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
